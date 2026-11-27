@@ -69,7 +69,7 @@ dependencies {
     modCompileOnly fileTree('build/ffapi-compile') { include '*.jar' }
     implementation 'io.github.llamalad7:mixinextras-forge:0.3.5'
     compileOnly 'net.fabricmc:fabric-loader:0.15.0'
-    modCompileOnly files('pal-1.20.1-remapped.jar')
+    modImplementation files('pal-1.20.1-remapped.jar')
     compileOnly 'io.github.llamalad7:mixinextras-common:0.3.5'
     modImplementation "me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}"
 
