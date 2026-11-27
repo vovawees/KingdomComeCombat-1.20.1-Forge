@@ -26,15 +26,7 @@ public class CrossbowStableProjectileMixin {
     private static final Identifier STABLE_ENCHANTMENT_ID = Identifier.of(KingdomComeCombat.MOD_ID, "stable");
     private static final Identifier POWERFUL_ENCHANTMENT_ID = Identifier.of(KingdomComeCombat.MOD_ID, "powerful");
 
-    @Inject(method = "getPullTime", at = @At("RETURN"), cancellable = true)
-    private static void kingdomcomecombat$applyDrawSpeed(
-            ItemStack stack,
-            LivingEntity user,
-            CallbackInfoReturnable<Integer> cir
-    ) {
-        double speed = RangedWeaponAttributesRegistry.get(stack).drawSpeed();
-        cir.setReturnValue(Math.max(1, (int) Math.ceil(cir.getReturnValueI() / speed)));
-    }
+
 
     @Inject(method = "usageTick", at = @At("HEAD"))
     private void kingdomcomecombat$consumeDrawStamina(
