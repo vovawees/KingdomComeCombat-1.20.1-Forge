@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": "minecraft:netherite_upgrade_smithing_template",
+  "base": "kingdom_come_combat:diamond_fighting_mace",
+  "addition": "minecraft:netherite_ingot",
+  "result": {
+    "id": "kingdom_come_combat:netherite_fighting_mace",
+    "count": 1
+  }
+}

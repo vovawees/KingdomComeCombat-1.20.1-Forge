@@ -1,0 +1,10 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": ["modonomicon"]
+    }
+  ],
+  "type": "kingdom_come_combat:combat_manual",
+  "category": "equipment"
+}

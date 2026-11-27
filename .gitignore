@@ -1,0 +1,48 @@
+# Gradle / build
+.gradle/
+build/
+build-*/
+out/
+bin/
+*.class
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.run/
+.settings/
+.project
+.classpath
+
+# Run dirs
+run/
+run-*/
+runs/
+
+# Logs / reports
+*.log
+logs/
+crash-reports/
+reports/
+problems-report.html
+
+# Native / OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.pem
+*.key
+
+# Superpowers scratch
+.superpowers/
+
+# Serena
+.serena/
+
+# Source backports generated
+src/generated-1201.tmp/

@@ -1,0 +1,2 @@
+# .ai notes
+KCC 1.20.1 Forge port. Baseline current forge-1.20.1 BROKEN in fresh env (100 err; after 3-line classpath fix FFAPI resolves; remaining PAL source-backport remap + reload-listener). PROVEN pure ForgeGradle6+FG8.14.2+Forge47.4.0+ForgifiedFabricAPI(maven.modrinth:Aqlf1Shp:qzoL6HjK nested META-INF/jarjar extracted compileOnly)+fabric-loader0.15.0+official mappings+Java17+Java21-JVM green. PAL no 1.20.1 artifact; original source-backports PAL1.1.4+mc1.21.1 sources remapped via Loom. Java21 JVM at /tmp/opencode/jdk.

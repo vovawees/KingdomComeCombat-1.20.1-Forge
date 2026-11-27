@@ -1,0 +1,63 @@
+{
+	"required": true,
+	"package": "com.kingdomcomecombat.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"AbstractHorseEntityRidingMixin",
+		"CamelEntityRidingMixin",
+		"ArmorSlotBandageMixin",
+		"BowRapidFireMixin",
+		"CrossbowStableProjectileMixin",
+		"CreeperEntityExplosionSuppressMixin",
+		"EnderDragonBossMixin",
+		"EndermanDragonBreathArrowMixin",
+		"FirstAidDamageDistributionMixin",
+		"LegendarySurvivalOverhaulBodyDamageMixin",
+		"DragonParryProtectionMixin",
+		"HungerManagerInjuryMixin",
+		"HundredYearsWarBaseCombatEntityMixin",
+		"InstantHealthClearsInjuryMixin",
+		"IronGolemEntityVanillaAttackMixin",
+		"ItemStackPotionCoatingMixin",
+		"ItemStackHardshipDurabilityMixin",
+		"ItemStackWoodenSwordDurabilityMixin",
+		"LecternScreenHandlerSkillBookMixin",
+		"LivingEntityBloodiedBodyMixin",
+		"LivingEntityBloodSplashMixin",
+		"LivingEntityProjectileArmorMixin",
+		"LivingEntityHurtSoundVolumeMixin",
+		"LivingEntityHealInjuryMixin",
+		"LivingEntityHardshipFallMixin",
+		"LivingEntityHardshipStatusEffectMixin",
+    "LivingEntityPassiveDamageDebuffMixin",
+    "MeleeAttackGoalVanillaAttackMixin",
+		"MilkBucketInjuryMixin",
+		"MobEntityVanillaAttackMixin",
+		"PersistentProjectileKnockbackMixin",
+		"PersistentProjectileEntityInvoker",
+		"PersistentProjectileGlanceMixin",
+		"PersistentProjectileCritTrailMixin",
+		"PersistentProjectileDragonBreathTrailMixin",
+		"PersistentProjectileExtendedHeadHitboxMixin",
+		"PersistentProjectileStableGravityMixin",
+		"PlayerEntityVanillaAttackMixin",
+		"RangedWeaponStaminaMixin",
+		"PlayerEntityLegInjurySprintMixin",
+		"PlayerEntityHardshipJumpMixin",
+		"PlayerEntitySleepInjuryMixin",
+		"PlayerScreenHandlerBandageMixin",
+		"ServerPlayerComboProgressMixin",
+		"ServerPlayerExperienceHardshipMixin",
+		"ServerPlayerInteractionManagerPotionCoatingMixin"
+		,"SkeletonBodyAimMixin"
+		,"TridentLockUseMixin"
+		,"WitherBossMixin"
+		,"WitherSkullDefenseMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
