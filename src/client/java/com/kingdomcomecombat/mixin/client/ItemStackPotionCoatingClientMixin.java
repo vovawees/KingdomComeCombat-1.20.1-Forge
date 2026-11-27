@@ -29,13 +29,11 @@ public class ItemStackPotionCoatingClientMixin {
         }
     }
 
-    @Inject(method = "getMaxUseTime", at = @At("HEAD"), cancellable = true)
-    private void kingdomcomecombat$getPotionCoatingUseTime(
-            LivingEntity user,
-            CallbackInfoReturnable<Integer> cir
-    ) {
+    @Inject(method = "getMaxUseTime", at = @At("HEAD"), cancellable = true, require = 0)
+    private void kingdomcomecombat$getPotionCoatingUseTime(CallbackInfoReturnable<Integer> cir) {
         ItemStack stack = (ItemStack) (Object) this;
-        if (user instanceof ClientPlayerEntity player && PotionCoatingHandler.isPotionCoatingCandidate(player, stack)) {
+        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        if (player != null && PotionCoatingHandler.isPotionCoatingCandidate(player, stack)) {
             cir.setReturnValue(72000);
         }
     }
