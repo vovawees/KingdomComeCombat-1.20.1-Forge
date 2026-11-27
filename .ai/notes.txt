@@ -24,3 +24,9 @@ FINAL STATE evidence:
 - KccModCompat errs=0. PAL-string-backport (fragile) vs PAL-1.21.1-binary-remap both insufficient; no PAL-1.20.1 artifact (Fabric/NeoForge only, not 1.20.1).
 - verified progress: 100->20->0->180->32->24->22; mocha=0; contamination=0; PAL-own errors eliminated; FFAPI 0.92.6+1.11.14+1.20.1; modCompileOnly FFAPI-nested+PAL; KccModCompat Yarn.
 - NOT green; NOT claiming optimized/beautiful/stable/mod-compat proven.
+
+MIXIN ISSUE root-cause doc:
+- kingdom_come_combat shared uses Yarn names + Fabric net.minecraft.* packages; remapJar remaps BYTECODE but NOT @Inject(method=)/@At(target=)/@ModifyArg/@Redirect strings; NO refMap generated (no kingdom_come_combat.refmap.json in jar; No refMap loaded).
+- On user full ~100-mod Connector pack, cascade + no refmap -> many MixinApplyError. My forge-1.20.1 runServer kcc=0 (no pack/no Connector/no rendering) does NOT reproduce.
+- Mitigations applied: @Inject/@ModifyArg require=0; fixed @At targets net.minecraft.world.*; removed broken legacy mixins (Legacy1201LootableContainerSkillBookMixin, MilkBucketInjuryMixin, LegacyMilkBucketInjuryMixin); removed CrossbowStableProjectileMixin members; 1.20.1 names.
+- PROPER FIX: generate Mixin refmap (Loom mixin remap refmap=kingdom_come_combat.refmap.json + mixins.json refmap) OR convert @Inject/@At strings to SRG m_*+net.minecraft.world.* OR mixin `minVersion`/`require=0` everywhere; reproduce in real pack; NOT verified here.
