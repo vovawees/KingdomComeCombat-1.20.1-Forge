@@ -48,7 +48,7 @@ public abstract class PersistentProjectileStableGravityMixin extends ProjectileE
         builder.add(KINGDOMCOMECOMBAT_STABLE_LEVEL, 0);
     }
 
-    @Inject(method = "getGravity", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getGravity", at = @At("RETURN"), cancellable = true, require = 0)
     private void kingdomcomecombat$reduceStableGravity(CallbackInfoReturnable<Double> cir) {
         int stableLevel = Math.max(
                 kingdomcomecombat$getStableLevel(),
