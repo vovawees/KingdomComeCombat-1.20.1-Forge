@@ -67,7 +67,7 @@ public class CrossbowStableProjectileMixin {
         stableProjectile.kingdomcomecombat$setStableLevel(level);
     }
 
-    @Inject(method = "shoot", at = @At("TAIL"))
+    @Inject(method = "shoot", at = @At("TAIL"), require = 0)
     private void kingdomcomecombat$increasePowerfulProjectileSpeed(
             LivingEntity shooter,
             ProjectileEntity projectile,
