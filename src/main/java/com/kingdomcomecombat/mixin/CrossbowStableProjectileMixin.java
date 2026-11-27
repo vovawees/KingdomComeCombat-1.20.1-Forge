@@ -49,7 +49,7 @@ public class CrossbowStableProjectileMixin {
         }
     }
 
-    @Inject(method = "createArrowEntity", at = @At("RETURN"))
+    @Inject(method = "createArrowEntity", at = @At("RETURN"), require = 0)
     private void kingdomcomecombat$markStableCrossbowProjectile(
             World world,
             LivingEntity shooter,
