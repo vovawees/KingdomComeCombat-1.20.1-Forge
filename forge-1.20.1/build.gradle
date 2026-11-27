@@ -122,6 +122,11 @@ tasks.named('shadowJar', com.github.jengelman.gradle.plugins.shadow.tasks.Shadow
     mergeServiceFiles()
     exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'module-info.class'
     exclude 'net/minecraftforge/**', 'net/minecraft/**', 'com/mojang/**'
+    dependencies {
+        // only nest PlayerAnimationLib + mochafloats; everything else stays external
+        include(dependency('com.zigythebird::'))
+        include(dependency('com.zigythebird.playeranim::'))
+    }
 }
 tasks.named('build') { dependsOn tasks.named('shadowJar') }
 tasks.named('processResources').configure { dependsOn 'prepareShared1201' }
