@@ -38,7 +38,7 @@ public class BowRapidFireMixin {
         ));
     }
 
-    @Inject(method = "shoot", at = @At("TAIL"))
+    @Inject(method = "shoot", at = @At("TAIL"), require = 0)
     private void kingdomcomecombat$applyProjectileSpeed(
             LivingEntity shooter,
             ProjectileEntity projectile,
