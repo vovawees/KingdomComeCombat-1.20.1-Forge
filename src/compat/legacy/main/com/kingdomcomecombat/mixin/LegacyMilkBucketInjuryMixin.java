@@ -1,8 +1,8 @@
 package com.kingdomcomecombat.mixin;
 
 import com.kingdomcomecombat.injury.ModStatusEffects;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.item.MilkBucketItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,13 +15,13 @@ import java.util.List;
 public class LegacyMilkBucketInjuryMixin {
     @Redirect(
             method = "finishUsing",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;clearStatusEffects()Z"), require = 0
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;removeAllEffects()Z"), require = 0
     )
     private boolean kingdomcomecombat$milkKeepsInjuriesAndBleeding(LivingEntity entity) {
         boolean removedAny = false;
-        for (StatusEffectInstance instance : List.copyOf(entity.getStatusEffects())) {
-            if (!ModStatusEffects.isInjuryOrBleeding(instance.getEffectType())) {
-                removedAny |= entity.removeStatusEffect(instance.getEffectType());
+        for (StatusEffectInstance instance : List.copyOf(entity.getActiveEffects())) {
+            if (!ModStatusEffects.isInjuryOrBleeding(instance.getEffect())) {
+                removedAny |= entity.removeEffect(instance.getEffect());
             }
         }
         return removedAny;
