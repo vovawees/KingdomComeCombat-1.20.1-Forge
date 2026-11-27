@@ -38,7 +38,7 @@ public abstract class EnderDragonBossMixin implements EnderDragonBossStateAccess
         ((EnderDragonEntity) (Object) this).getDataTracker().set(KINGDOMCOMECOMBAT_ARMOR_BROKEN, broken);
     }
 
-    @Inject(method = "clampScale", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "clampScale", require = 0, at = @At("HEAD"), cancellable = true)
     private void kingdomcomecombat$increaseDragonScale(float scale, CallbackInfoReturnable<Float> cir) {
         cir.setReturnValue(com.kingdomcomecombat.config.CombatServerConfig.enderDragonOverhaulEnabled()
                 ? 1.3F : 1.0F);
