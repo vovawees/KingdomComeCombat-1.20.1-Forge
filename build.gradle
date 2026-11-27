@@ -130,19 +130,19 @@ if (needs1201Apis) {
 			File resourceOutput = generatedPal1201Resources.get().asFile
 			delete javaOutput, resourceOutput
 			copy {
-				from zipTree(configurations.palCore1201Sources.singleFile)
+				from zipTree(configurations.palCore1201Sources.files.find { it.name.endsWith("-sources.jar") })
 				include "com/**/*.java"
 				into javaOutput
 			}
 			copy {
-				from zipTree(configurations.palFabric1201Sources.singleFile)
+				from zipTree(configurations.palFabric1201Sources.files.find { it.name.endsWith("-sources.jar") })
 				include "com/**/*.java"
 				exclude "com/zigythebird/playeranim/commands/**"
 				exclude "com/zigythebird/playeranim/fabric/PlayerAnimLibModFabric.java"
 				into javaOutput
 			}
 			copy {
-				from zipTree(configurations.palFabric1201Sources.singleFile)
+				from zipTree(configurations.palFabric1201Sources.files.find { it.name.endsWith("-sources.jar") })
 				include "player_animation_library.mixins.json"
 				into resourceOutput
 				filter { String line -> line.replace('"compatibilityLevel": "JAVA_21"', '"compatibilityLevel": "JAVA_17"') }

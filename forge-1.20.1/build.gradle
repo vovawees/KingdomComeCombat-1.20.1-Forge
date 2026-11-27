@@ -41,11 +41,13 @@ loom {
 sourceSets.main {
     java.srcDirs = [
             'build/generatedShared',
+            '../build/generated/pal1201/java',
             'src/main/java'
     ]
     resources.srcDirs = [
             '../build/resources/main',
             '../build/resources/client',
+            '../build/generated/pal1201/resources',
             'src/main/resources'
     ]
     java.exclude 'com/kingdomcomecombat/client/config/KccModMenuIntegration.java'
@@ -98,8 +100,14 @@ tasks.register('prepareShared1201', Exec) {
     commandLine './gradlew', '-Ptarget_mc=1.20.1', 'classes', '--console=plain'
 }
 
-tasks.register('prepareForge1201Sources', Sync) {
+tasks.register('preparePal1201', Exec) {
     dependsOn 'prepareShared1201'
+    workingDir '..'
+    commandLine './gradlew', '-Ptarget_mc=1.20.1', 'generatePal1201Backport', '--console=plain'
+}
+
+tasks.register('prepareForge1201Sources', Sync) {
+    dependsOn 'prepareShared1201', 'preparePal1201'
     from '../build/generated/versionCompat/main'
     from '../build/generated/versionCompat/client'
     into layout.buildDirectory.dir('generatedShared')
@@ -114,7 +122,7 @@ tasks.register('prepareForge1201Sources', Sync) {
 }
 
 tasks.named('compileJava').configure { dependsOn 'prepareForge1201Sources', 'extractFfapiCompile' }
-tasks.named('processResources').configure { dependsOn 'prepareShared1201' }
+tasks.named('processResources').configure { dependsOn 'prepareShared1201', 'preparePal1201' }
 
 processResources {
     inputs.property 'version', project.version

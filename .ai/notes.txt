@@ -4,3 +4,10 @@ My 3-line fix in forge-1.20.1/build.gradle (modCompileOnly->compileOnly for FFAP
 JAVA: default java27 breaks Gradle9.4.1(class file 71); needs Java21 Gradle JVM; Java17 toolchain for output; Temurin21 at /tmp/opencode/jdk (ephemeral).
 REMOVED: neoforge, versions, src/compat/12111, releases, NEOFORGE.md, .github/workflows (no CI).
 PAL animations 54 files format 1.8.0 semantics preserved. Textures non-destructive.
+
+MORE FINDINGS (honest):
+- generatePal1201Backport outputs build/generated/pal1201/java; forge-1.20.1 did NOT run it nor add it -> PAL "does not exist". FIXED wiring (preparePal1201 + srcDirs + resources).
+- palCore1201Sources/palFabric1201Sources.singleFile BROKEN: resolves -sources.jar + transitive mochafloats/gson/javassist/slf4j -> "more than one file". FIXED: files.find{name.endsWith("-sources.jar")}.
+- PAL backport needs team.unnamed.mocha (mochafloats 4.1.0); repo libs has mochafloats-4.0.1; root pulls PAL mochafloats transitively but not onto compile classpath.
+- NOTE: root Fabric :compileJava is ALSO scanning forge-1.20.1/build/generatedShared + build/generated/pal1201 -> contamination; run --no-parallel + clean; still fails. Original forge-1.20.1 only worked with pre-populated .gradle + macOS layout.
+- baseline sequence: 100 err -> (PAL wiring) 20 -> (move KccModCompat to forge-1.20.1) 0 compile err + generatePal FAIL -> (singleFile fix) 200 on root :compileJava.
