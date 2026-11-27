@@ -62,11 +62,11 @@ dependencies {
 
     // Sinytra's 1.20.1 LTS artifacts predate its current Maven publication;
     // Modrinth exposes the official Forge jar as a normal Maven dependency.
-    ffapiBundle "maven.modrinth:Aqlf1Shp:qzoL6HjK"
-    modImplementation "maven.modrinth:Aqlf1Shp:qzoL6HjK"
+    ffapiBundle "maven.modrinth:Aqlf1Shp:XweDEycJ"
+    modImplementation "maven.modrinth:Aqlf1Shp:XweDEycJ"
     // The legacy FFAPI distribution is an umbrella jar without a Maven POM.
     // Its actual Forge-mapped API modules are nested in META-INF/jarjar.
-    compileOnly fileTree('build/ffapi-compile') { include '*.jar' }
+    modCompileOnly fileTree('build/ffapi-compile') { include '*.jar' }
     implementation 'io.github.llamalad7:mixinextras-forge:0.3.5'
     compileOnly 'net.fabricmc:fabric-loader:0.15.0'
     modCompileOnly files('../libs/PlayerAnimationLibFabric-1.1.4+mc.1.21.1.jar')

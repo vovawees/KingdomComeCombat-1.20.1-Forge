@@ -1,7 +1,7 @@
 package com.kingdomcomecombat.compat;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.util.Identifier;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -132,7 +132,7 @@ public final class KccModCompat {
         if (stack == null || stack.isEmpty()) {
             return false;
         }
-        Optional<ResourceLocation> key = Optional.ofNullable(ForgeRegistries.ITEMS.getKey(stack.getItem()));
+        Optional<Identifier> key = Optional.ofNullable(ForgeRegistries.ITEMS.getKey(stack.getItem()));
         if (key.isEmpty()) {
             return false;
         }
