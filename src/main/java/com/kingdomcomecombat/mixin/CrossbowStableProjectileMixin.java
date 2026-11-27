@@ -67,48 +67,7 @@ public class CrossbowStableProjectileMixin {
         stableProjectile.kingdomcomecombat$setStableLevel(level);
     }
 
-    @Inject(method = "shoot", at = @At("TAIL"), require = 0)
-    private void kingdomcomecombat$increasePowerfulProjectileSpeed(
-            LivingEntity shooter,
-            ProjectileEntity projectile,
-            int index,
-            float speed,
-            float divergence,
-            float yaw,
-            LivingEntity target,
-            org.spongepowered.asm.mixin.injection.callback.CallbackInfo ci
-    ) {
-        if (!(projectile instanceof PersistentProjectileEntity persistentProjectile)) {
-            RangedWeaponAttributes attributes = RangedWeaponAttributesRegistry.get(shooter.getActiveItem());
-            projectile.setVelocity(projectile.getVelocity().multiply(attributes.projectileSpeed()));
-            return;
-        }
 
-        RangedWeaponAttributes attributes = RangedWeaponAttributesRegistry.get(persistentProjectile.getWeaponStack());
-        projectile.setVelocity(projectile.getVelocity().multiply(attributes.projectileSpeed()));
-
-        ItemStack weapon = persistentProjectile.getWeaponStack();
-        double spreadMultiplier = PassiveSkillPerks.projectileSpreadMultiplier(shooter, weapon);
-        double speedMultiplier = PassiveSkillPerks.projectileSpeedMultiplier(shooter, weapon);
-        Vec3d velocity = projectile.getVelocity();
-        if (velocity.lengthSquared() > 0.000001) {
-            Vec3d intended = shooter.getRotationVec(1.0F).rotateY((float) Math.toRadians(-yaw));
-            Vec3d corrected = intended.add(velocity.normalize().subtract(intended).multiply(spreadMultiplier));
-            if (corrected.lengthSquared() > 0.000001) {
-                projectile.setVelocity(corrected.normalize().multiply(velocity.length() * speedMultiplier));
-            }
-        }
-
-        int level = kingdomcomecombat$enchantmentLevel(
-                weapon,
-                POWERFUL_ENCHANTMENT_ID
-        );
-        if (level <= 0) {
-            return;
-        }
-
-        projectile.setVelocity(projectile.getVelocity().multiply(1.0 + level * 0.12));
-    }
 
     private static int kingdomcomecombat$enchantmentLevel(ItemStack stack, Identifier enchantmentId) {
         if (stack == null) {
