@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class WitherSkullDefenseMixin {
     @Inject(
             method = "<init>(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/util/math/Vec3d;)V",
-            at = @At("RETURN")
+            at = @At("RETURN"), require = 0
     )
     private void kingdomcomecombat$slightlyIncreaseLaunchSpeed(
             World world,
