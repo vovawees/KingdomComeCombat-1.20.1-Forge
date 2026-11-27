@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PersistentProjectileEntity.class)
 public class PersistentProjectileKnockbackMixin {
-    @Inject(method = "knockback", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "knockback", at = @At("HEAD"), cancellable = true, require = 0)
     private void kingdomcomecombat$cancelProjectileKnockbackWithoutImpact(
             LivingEntity target,
             DamageSource source,
