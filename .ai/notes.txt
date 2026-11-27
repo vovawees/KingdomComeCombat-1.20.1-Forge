@@ -17,3 +17,10 @@ PAL REMAP ROOT-CAUSE: generatePal1201Backport remap only swaps intermediary shor
 ARCHITECTURE PIVOT WORKED for PAL:
 - forge-1.20.1: PAL now modCompileOnly files(../libs/PlayerAnimationLibFabric-1.1.4+mc.1.21.1.jar); Loom remaps PAL binary; removed pal1201 sourceSets + preparePal1201. PAL errors GONE (root-pal1201=0, pal~0), errs 200->180.
 - Remaining 180 = forge-1.20.1 generatedShared + KCC src 1.20.1-name/Fabric-API-version remap deltas: SimpleParticleType->DefaultParticleType, KeyBinding->KeyMapping, ResourceType->PackType, PoseStack->MatrixStack, GameRules.get, triggerAnimation(Identifier), invalid method refs, not-override. Likely FFAPI version mismatch (KCC shared built fabric-api 0.92.6+1.20.1; forge-1.20.1 uses FFAPI 0.92.2+1.11.12+1.20.1 modrinth qzoL6HjK + ffapi-compile 0.92.2).
+
+FINAL STATE evidence:
+- forge-1.20.1 build --no-parallel => Execution failed for task :compileJava, BUILD FAILED.
+- errs=22 all PAL remap: net.minecraft.class_2960/net.minecraft.class_742 not found; Identifier->class_2960; AbstractClientPlayerEntity->class_742; triggerAnimation(Identifier[,float]) no suitable; replaceAnimationWithFade(...Identifier).
+- KccModCompat errs=0. PAL-string-backport (fragile) vs PAL-1.21.1-binary-remap both insufficient; no PAL-1.20.1 artifact (Fabric/NeoForge only, not 1.20.1).
+- verified progress: 100->20->0->180->32->24->22; mocha=0; contamination=0; PAL-own errors eliminated; FFAPI 0.92.6+1.11.14+1.20.1; modCompileOnly FFAPI-nested+PAL; KccModCompat Yarn.
+- NOT green; NOT claiming optimized/beautiful/stable/mod-compat proven.
