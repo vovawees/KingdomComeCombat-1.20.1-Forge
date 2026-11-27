@@ -12,10 +12,10 @@ public abstract class SkeletonBodyAimMixin {
     private static final double HEAD_AIM_HEIGHT = 0.85;
 
     @ModifyArg(
-            method = "shootAt",
+            method = "shootAt", require = 0,
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/LivingEntity;getBodyY(D)D"
+                    target = "Lnet/minecraft/world/entity/LivingEntity;getBodyY(D)D"
             ),
             index = 0
     )
