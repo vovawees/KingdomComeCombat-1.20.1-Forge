@@ -2216,9 +2216,6 @@ processResources {
 				if (needsPre1215Apis && !needs1201Apis && line.contains('"LecternScreenHandlerSkillBookMixin"')) {
 					return line + '\n\t\t"LegacyLootableInventorySkillBookMixin",'
 				}
-				if (needs1201Apis && line.contains('"LecternScreenHandlerSkillBookMixin"')) {
-					return line + '\n\t\t"Legacy1201LootableContainerSkillBookMixin",'
-				}
 				return line
 			}
 		}
