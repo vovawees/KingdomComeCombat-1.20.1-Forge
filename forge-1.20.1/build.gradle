@@ -121,6 +121,7 @@ tasks.named('shadowJar', com.github.jengelman.gradle.plugins.shadow.tasks.Shadow
     archiveClassifier = ''
     mergeServiceFiles()
     exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'module-info.class'
+    exclude 'net/minecraftforge/**', 'net/minecraft/**', 'com/mojang/**'
 }
 tasks.named('build') { dependsOn tasks.named('shadowJar') }
 tasks.named('processResources').configure { dependsOn 'prepareShared1201' }
