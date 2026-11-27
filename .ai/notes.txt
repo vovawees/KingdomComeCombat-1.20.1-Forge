@@ -11,3 +11,5 @@ MORE FINDINGS (honest):
 - PAL backport needs team.unnamed.mocha (mochafloats 4.1.0); repo libs has mochafloats-4.0.1; root pulls PAL mochafloats transitively but not onto compile classpath.
 - NOTE: root Fabric :compileJava is ALSO scanning forge-1.20.1/build/generatedShared + build/generated/pal1201 -> contamination; run --no-parallel + clean; still fails. Original forge-1.20.1 only worked with pre-populated .gradle + macOS layout.
 - baseline sequence: 100 err -> (PAL wiring) 20 -> (move KccModCompat to forge-1.20.1) 0 compile err + generatePal FAIL -> (singleFile fix) 200 on root :compileJava.
+
+PAL REMAP ROOT-CAUSE: generatePal1201Backport remap only swaps intermediary short names producing net.minecraft.<Simple> without package (net.minecraft.Vec3d vs net.minecraft.util.math.Vec3d etc). Added net.minecraft.X->pkg fixups; simple fixed; PAL mixin classes + many symbols still fail; full package-aware remap needed. WORKING: prepareShared1201 generate-only; pal sources pick; PAL wiring; mochafloats-4.1.0; mocha=0; contamination=0. Remaining=PAL remap+mixin on Forge+PreparableReloadListener.

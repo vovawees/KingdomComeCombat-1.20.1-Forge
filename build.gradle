@@ -181,6 +181,12 @@ if (needs1201Apis) {
         if (obj instanceof JsonArray json) return json.asList();
         if (obj instanceof List<?> list) return list;
         throw new ClassCastException(obj.getClass().getName());''')
+				text = text.replace("net.minecraft.Vec3d", "net.minecraft.util.math.Vec3d")
+				text = text.replace("net.minecraft.Identifier", "net.minecraft.util.Identifier")
+				text = text.replace("net.minecraft.MathHelper", "net.minecraft.util.math.MathHelper")
+				text = text.replace("net.minecraft.MatrixStack", "net.minecraft.client.util.math.MatrixStack")
+				text = text.replace("net.minecraft.Vec3i", "net.minecraft.util.math.Vec3i")
+				text = text.replace("net.minecraft.BlockPos", "net.minecraft.util.math.BlockPos")
 				source.setText(text, "UTF-8")
 			}
 		}

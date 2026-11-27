@@ -84,6 +84,7 @@ dependencies {
         include '**/geckolib-fabric-1.21.7-5.2.1-ceaf4ab3-*.jar'
     }
     implementation 'org.javassist:javassist:3.30.2-GA'
+    implementation 'com.zigythebird:mochafloats:4.1.0'
 }
 
 tasks.register('extractFfapiCompile', Sync) {
@@ -97,7 +98,7 @@ tasks.register('extractFfapiCompile', Sync) {
 
 tasks.register('prepareShared1201', Exec) {
     workingDir '..'
-    commandLine './gradlew', '-Ptarget_mc=1.20.1', 'classes', '--console=plain'
+    commandLine './gradlew', '-Ptarget_mc=1.20.1', 'generateVersionCompatSources', 'processResources', 'processClientResources', '--console=plain'
 }
 
 tasks.register('preparePal1201', Exec) {
