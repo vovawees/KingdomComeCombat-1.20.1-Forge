@@ -31,7 +31,6 @@
 		"LivingEntityHardshipStatusEffectMixin",
 		"LivingEntityPassiveDamageDebuffMixin",
 		"MeleeAttackGoalVanillaAttackMixin",
-		"MilkBucketInjuryMixin",
 		"MobEntityVanillaAttackMixin",
 		"PersistentProjectileKnockbackMixin",
 		"PersistentProjectileEntityInvoker",
