@@ -1,6 +1,5 @@
 plugins {
     id 'dev.architectury.loom' version '1.13-SNAPSHOT'
-    id 'com.gradleup.shadow' version '9.3.0'
 }
 
 version = project.mod_version
@@ -117,18 +116,10 @@ tasks.register('prepareForge1201Sources', Sync) {
 }
 
 tasks.named('compileJava').configure { dependsOn 'prepareForge1201Sources', 'extractFfapiCompile' }
-tasks.named('shadowJar', com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
-    archiveClassifier = ''
-    mergeServiceFiles()
-    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'module-info.class'
-    exclude 'net/minecraftforge/**', 'net/minecraft/**', 'com/mojang/**'
-    dependencies {
-        // only nest PlayerAnimationLib + mochafloats; everything else stays external
-        include(dependency('com.zigythebird::'))
-        include(dependency('com.zigythebird.playeranim::'))
-    }
-}
-tasks.named('build') { dependsOn tasks.named('shadowJar') }
+
+// add mochafloats classes from cache into shadow
+
+
 tasks.named('processResources').configure { dependsOn 'prepareShared1201' }
 
 processResources {
@@ -142,3 +133,6 @@ processResources {
     }
     exclude 'fabric.mod.json'
 }
+
+// separate remapJar output from shadowJar output
+tasks.named('remapJar') { archiveClassifier = '' }
