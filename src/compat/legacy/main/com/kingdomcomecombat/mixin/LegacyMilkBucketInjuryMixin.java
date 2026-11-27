@@ -15,7 +15,7 @@ import java.util.List;
 public class LegacyMilkBucketInjuryMixin {
     @Redirect(
             method = "finishUsing",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;clearStatusEffects()Z")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;clearStatusEffects()Z"), require = 0
     )
     private boolean kingdomcomecombat$milkKeepsInjuriesAndBleeding(LivingEntity entity) {
         boolean removedAny = false;
