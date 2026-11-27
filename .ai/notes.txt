@@ -13,3 +13,7 @@ MORE FINDINGS (honest):
 - baseline sequence: 100 err -> (PAL wiring) 20 -> (move KccModCompat to forge-1.20.1) 0 compile err + generatePal FAIL -> (singleFile fix) 200 on root :compileJava.
 
 PAL REMAP ROOT-CAUSE: generatePal1201Backport remap only swaps intermediary short names producing net.minecraft.<Simple> without package (net.minecraft.Vec3d vs net.minecraft.util.math.Vec3d etc). Added net.minecraft.X->pkg fixups; simple fixed; PAL mixin classes + many symbols still fail; full package-aware remap needed. WORKING: prepareShared1201 generate-only; pal sources pick; PAL wiring; mochafloats-4.1.0; mocha=0; contamination=0. Remaining=PAL remap+mixin on Forge+PreparableReloadListener.
+
+ARCHITECTURE PIVOT WORKED for PAL:
+- forge-1.20.1: PAL now modCompileOnly files(../libs/PlayerAnimationLibFabric-1.1.4+mc.1.21.1.jar); Loom remaps PAL binary; removed pal1201 sourceSets + preparePal1201. PAL errors GONE (root-pal1201=0, pal~0), errs 200->180.
+- Remaining 180 = forge-1.20.1 generatedShared + KCC src 1.20.1-name/Fabric-API-version remap deltas: SimpleParticleType->DefaultParticleType, KeyBinding->KeyMapping, ResourceType->PackType, PoseStack->MatrixStack, GameRules.get, triggerAnimation(Identifier), invalid method refs, not-override. Likely FFAPI version mismatch (KCC shared built fabric-api 0.92.6+1.20.1; forge-1.20.1 uses FFAPI 0.92.2+1.11.12+1.20.1 modrinth qzoL6HjK + ffapi-compile 0.92.2).
